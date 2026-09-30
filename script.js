@@ -57,3 +57,10 @@ listaContactos.addEventListener('click', (e) => {
     actualizarContador();
   }
 });
+const buscadorInput = document.getElementById('buscador');
+
+buscadorInput.addEventListener('input', (e) => {
+  const termino = e.target.value.toLowerCase();
+  const filtrados = contactos.filter(c => c.nombre.toLowerCase().includes(termino));
+  renderizarContactos(filtrados);
+});
