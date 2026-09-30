@@ -42,3 +42,10 @@ form.addEventListener('submit', (e) => {
   nombreInput.value = '';
   telefonoInput.value = '';
 });
+listaContactos.addEventListener('click', (e) => {
+  if (e.target.classList.contains('btn-eliminar')) {
+    const id = Number(e.target.getAttribute('data-id'));
+    contactos = contactos.filter(c => c.id !== id);
+    renderizarContactos(contactos);
+  }
+});
