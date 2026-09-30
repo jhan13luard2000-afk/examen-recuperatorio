@@ -2,8 +2,13 @@ const form = document.getElementById('contact-form');
 const nombreInput = document.getElementById('nombre');
 const telefonoInput = document.getElementById('telefono');
 const listaContactos = document.getElementById('lista-contactos');
+const contadorSpan = document.getElementById('contador');
 
 let contactos = [];
+
+function actualizarContador() {
+  contadorSpan.textContent = contactos.length;
+}
 
 function renderizarContactos(items) {
   listaContactos.innerHTML = '';
@@ -38,14 +43,17 @@ form.addEventListener('submit', (e) => {
 
   contactos.push(nuevoContacto);
   renderizarContactos(contactos);
+  actualizarContador();
 
   nombreInput.value = '';
   telefonoInput.value = '';
 });
+
 listaContactos.addEventListener('click', (e) => {
   if (e.target.classList.contains('btn-eliminar')) {
     const id = Number(e.target.getAttribute('data-id'));
     contactos = contactos.filter(c => c.id !== id);
     renderizarContactos(contactos);
+    actualizarContador();
   }
 });
